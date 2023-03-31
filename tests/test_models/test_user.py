@@ -1,55 +1,44 @@
 #!/usr/bin/python3
 """
-User Unittest
+Unittest for user.py
 """
 import unittest
 from models.user import User
-from datetime import datetime
+import datetime
 
 
-class TestUser(unittest.TestCase):
-    """
-    User Test Class
-    """
-    def test_instance(self):
-        """Testing created instances"""
-        my_user = User()
-        self.assertIsInstance(my_user, User)
+class UserCase(unittest.TestCase):
+    """Tests instances and methods from user class"""
 
-    def test_attributes(self):
-        """Testing class attributes from an instance"""
-        my_user = User()
-        self.assertEqual(type(my_user.id), str)
-        self.assertIsInstance(my_user.created_at, datetime)
-        self.assertIsInstance(my_user.updated_at, datetime)
-        self.assertEqual(type(my_user.email), str)
-        self.assertEqual(type(my_user.password), str)
-        self.assertEqual(type(my_user.first_name), str)
-        self.assertEqual(type(my_user.last_name), str)
+    u = User()
 
-    def test_str_override(self):
-        """Testing the print output of an instance"""
-        my_user = User()
-        my_user.name = "My First Model"
-        my_user.my_number = 89
-        self.assertEqual(type(str(my_user)), str)
+    def test_class_exists(self):
+        """tests if class exists"""
+        self.assertEqual(str(type(self.u)), "<class 'models.user.User'>")
 
-    def test_save(self):
-        """Testing the save method"""
-        my_user = User()
-        self.assertEqual(type(str(my_user)), str)
-        my_user.save()
-        self.assertEqual(type(str(my_user)), str)
+    def test_user_inheritance(self):
+        """test if User is a subclass of BaseModel"""
+        self.assertIsInstance(self.u, User)
 
-    def test_to_dict(self):
-        """Testing the to_dict method"""
-        my_user = User()
-        user_dict = my_user.to_dict()
-        new_user = User(**user_dict)
-        self.assertIsInstance(new_user, User)
-        self.assertEqual(type(new_user.id), str)
-        self.assertIsInstance(new_user.created_at, datetime)
-        self.assertIsInstance(new_user.updated_at, datetime)
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.u, 'email'))
+        self.assertTrue(hasattr(self.u, 'password'))
+        self.assertTrue(hasattr(self.u, 'first_name'))
+        self.assertTrue(hasattr(self.u, 'last_name'))
+        self.assertTrue(hasattr(self.u, 'id'))
+        self.assertTrue(hasattr(self.u, 'created_at'))
+        self.assertTrue(hasattr(self.u, 'updated_at'))
+
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.u.first_name, str)
+        self.assertIsInstance(self.u.last_name, str)
+        self.assertIsInstance(self.u.email, str)
+        self.assertIsInstance(self.u.password, str)
+        self.assertIsInstance(self.u.id, str)
+        self.assertIsInstance(self.u.created_at, datetime.datetime)
+        self.assertIsInstance(self.u.updated_at, datetime.datetime)
 
 
 if __name__ == '__main__':

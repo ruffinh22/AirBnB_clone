@@ -1,13 +1,12 @@
-#!/usr/bin/python3
 """
-A module containing a class City that inherits from BaseModel
+The city model
 """
+
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
+    """The city model. It inherits the Basemodel
     """
-    A class that inherits from BaseModel
-    """
-    state_id = ""
     name = ""
+    state_id = ""

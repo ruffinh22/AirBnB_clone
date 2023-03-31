@@ -1,13 +1,12 @@
-#!/usr/bin/python3
 """
-A module containing a class Place that inherits from BaseModel
+The place model
 """
+
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """
-    A class that inherits from BaseModel
+    """The place model. It inherits the Basemodel
     """
     city_id = ""
     user_id = ""

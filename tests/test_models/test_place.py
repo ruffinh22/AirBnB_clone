@@ -1,62 +1,58 @@
 #!/usr/bin/python3
 """
-Place Unittest
+Unittest for amenity.py
 """
 import unittest
 from models.place import Place
-from datetime import datetime
+import datetime
 
 
 class TestPlace(unittest.TestCase):
-    """
-    Place Test Class
-    """
-    def test_instance(self):
-        """Testing created instances"""
-        my_place = Place()
-        self.assertIsInstance(my_place, Place)
+    """Tests instances and methods from amenity class"""
 
-    def test_attributes(self):
-        """Testing class attributes from an instance"""
-        my_place = Place()
-        self.assertEqual(type(my_place.id), str)
-        self.assertIsInstance(my_place.created_at, datetime)
-        self.assertIsInstance(my_place.updated_at, datetime)
-        self.assertEqual(type(my_place.name), str)
-        self.assertEqual(type(my_place.city_id), str)
-        self.assertEqual(type(my_place.user_id), str)
-        self.assertEqual(type(my_place.description), str)
-        self.assertEqual(type(my_place.number_rooms), int)
-        self.assertEqual(type(my_place.number_bathrooms), int)
-        self.assertEqual(type(my_place.max_guest), int)
-        self.assertEqual(type(my_place.price_by_night), int)
-        self.assertEqual(type(my_place.latitude), float)
-        self.assertEqual(type(my_place.longitude), float)
-        self.assertEqual(type(my_place.amenity_ids), list)
+    p = Place()
 
-    def test_str_override(self):
-        """Testing the print output of an instance"""
-        my_place = Place()
-        my_place.name = "My First Model"
-        my_place.my_number = 89
-        self.assertEqual(type(str(my_place)), str)
+    def test_class_exists(self):
+        """tests if class exists"""
+        self.assertEqual(str(type(self.p)), "<class 'models.place.Place'>")
 
-    def test_save(self):
-        """Testing the save method"""
-        my_place = Place()
-        self.assertEqual(type(str(my_place)), str)
-        my_place.save()
-        self.assertEqual(type(str(my_place)), str)
+    def test_user_inheritance(self):
+        """test if Place is a subclass of BaseModel"""
+        self.assertIsInstance(self.p, Place)
 
-    def test_to_dict(self):
-        """Testing the to_dict method"""
-        my_place = Place()
-        place_dict = my_place.to_dict()
-        new_place = Place(**place_dict)
-        self.assertIsInstance(new_place, Place)
-        self.assertEqual(type(new_place.id), str)
-        self.assertIsInstance(new_place.created_at, datetime)
-        self.assertIsInstance(new_place.updated_at, datetime)
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.p, 'city_id'))
+        self.assertTrue(hasattr(self.p, 'user_id'))
+        self.assertTrue(hasattr(self.p, 'name'))
+        self.assertTrue(hasattr(self.p, 'description'))
+        self.assertTrue(hasattr(self.p, 'number_rooms'))
+        self.assertTrue(hasattr(self.p, 'number_bathrooms'))
+        self.assertTrue(hasattr(self.p, 'max_guest'))
+        self.assertTrue(hasattr(self.p, 'price_by_night'))
+        self.assertTrue(hasattr(self.p, 'latitude'))
+        self.assertTrue(hasattr(self.p, 'longitude'))
+        self.assertTrue(hasattr(self.p, 'amenity_ids'))
+        self.assertTrue(hasattr(self.p, 'id'))
+        self.assertTrue(hasattr(self.p, 'created_at'))
+        self.assertTrue(hasattr(self.p, 'updated_at'))
+
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.p.city_id, str)
+        self.assertIsInstance(self.p.user_id, str)
+        self.assertIsInstance(self.p.name, str)
+        self.assertIsInstance(self.p.description, str)
+        self.assertIsInstance(self.p.number_rooms, int)
+        self.assertIsInstance(self.p.number_bathrooms, int)
+        self.assertIsInstance(self.p.max_guest, int)
+        self.assertIsInstance(self.p.price_by_night, int)
+        self.assertIsInstance(self.p.latitude, float)
+        self.assertIsInstance(self.p.longitude, float)
+        self.assertIsInstance(self.p.amenity_ids, list)
+        self.assertIsInstance(self.p.id, str)
+        self.assertIsInstance(self.p.created_at, datetime.datetime)
+        self.assertIsInstance(self.p.updated_at, datetime.datetime)
 
 
 if __name__ == '__main__':

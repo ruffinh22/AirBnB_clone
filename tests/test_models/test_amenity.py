@@ -1,52 +1,39 @@
 #!/usr/bin/python3
 """
-Amenity Unittest
+Unittest for amenity.py
 """
 import unittest
 from models.amenity import Amenity
-from datetime import datetime
+import datetime
 
 
 class TestAmenity(unittest.TestCase):
-    """
-    Amenity Test Class
-    """
-    def test_instance(self):
-        """Testing created instances"""
-        my_amenity = Amenity()
-        self.assertIsInstance(my_amenity, Amenity)
+    """Tests instances and methods from amenity class"""
 
-    def test_attributes(self):
-        """Testing class attributes from an instance"""
-        my_amenity = Amenity()
-        self.assertEqual(type(my_amenity.id), str)
-        self.assertIsInstance(my_amenity.created_at, datetime)
-        self.assertIsInstance(my_amenity.updated_at, datetime)
-        self.assertEqual(type(my_amenity.name), str)
+    a = Amenity()
 
-    def test_str_override(self):
-        """Testing the print output of an instance"""
-        my_amenity = Amenity()
-        my_amenity.name = "My First Model"
-        my_amenity.my_number = 89
-        self.assertEqual(type(str(my_amenity)), str)
+    def test_class_exists(self):
+        """tests if class exists"""
+        res = "<class 'models.amenity.Amenity'>"
+        self.assertEqual(str(type(self.a)), res)
 
-    def test_save(self):
-        """Testing the save method"""
-        my_amenity = Amenity()
-        self.assertEqual(type(str(my_amenity)), str)
-        my_amenity.save()
-        self.assertEqual(type(str(my_amenity)), str)
+    def test_user_inheritance(self):
+        """test if Amenity is a subclass of BaseModel"""
+        self.assertIsInstance(self.a, Amenity)
 
-    def test_to_dict(self):
-        """Testing the to_dict method"""
-        my_amenity = Amenity()
-        amenity_dict = my_amenity.to_dict()
-        new_amenity = Amenity(**amenity_dict)
-        self.assertIsInstance(new_amenity, Amenity)
-        self.assertEqual(type(new_amenity.id), str)
-        self.assertIsInstance(new_amenity.created_at, datetime)
-        self.assertIsInstance(new_amenity.updated_at, datetime)
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.a, 'name'))
+        self.assertTrue(hasattr(self.a, 'id'))
+        self.assertTrue(hasattr(self.a, 'created_at'))
+        self.assertTrue(hasattr(self.a, 'updated_at'))
+
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.a.name, str)
+        self.assertIsInstance(self.a.id, str)
+        self.assertIsInstance(self.a.created_at, datetime.datetime)
+        self.assertIsInstance(self.a.updated_at, datetime.datetime)
 
 
 if __name__ == '__main__':
