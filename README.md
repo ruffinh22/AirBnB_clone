@@ -44,7 +44,7 @@ In our case, we want to be able to manage the objects of our project:
 ## How to start the console
 
 ```
-git clone https://github.com/Ola-mide/AirBnB_clone.git
+git clone https://github.com/ruffinh22/AirBnB_clone.git
 ```
 ```
 cd AirBnB_clone
